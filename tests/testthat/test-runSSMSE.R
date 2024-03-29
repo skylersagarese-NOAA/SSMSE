@@ -193,7 +193,7 @@ test_that("run_SSMSE runs multiple iterations/scenarios and works with summary f
   # change one of the summary values so that the SSB_ratio > 2
   summary$ts[4, "SpawnBio"] <- (summary$ts[4, "SpawnBio"])^2 # make really large
   expect_warning(
-    ssb_check_warn <- check_convergence(summary, min_yr = 101, max_yr = 106),
+    ssb_check_warn <- check_convergence(summary, min_yr = 4, max_yr = 106),
     "Some large"
   )
   expect_true(ssb_check_warn[1, "SSB_ratio"] > 2)
