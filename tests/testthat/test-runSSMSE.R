@@ -190,8 +190,9 @@ test_that("run_SSMSE runs multiple iterations/scenarios and works with summary f
   # the following 2 checks should be correct because there are no convergance
   # flags.
   expect_true(all(ssb_check$SSB_ratio > .5) & all(ssb_check$SSB_ratio < 2))
-  # change one of the summary values so that the SSB_ratio > 2
-  summary$ts[4, "SpawnBio"] <- (summary$ts[4, "SpawnBio"])^2 # make really large
+  # change all of year 104 summary values so that the SSB_ratio > 2
+  summary$ts[summary$ts[,"year"] == 104, "SpawnBio"] <- 
+    (summary$ts[summary$ts[,"year"] == 104, "SpawnBio"])^2 # make really large
   expect_warning(
     ssb_check_warn <- check_convergence(summary, min_yr = 101, max_yr = 106),
     "Some large"
